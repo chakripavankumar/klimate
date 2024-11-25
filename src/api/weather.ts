@@ -38,10 +38,10 @@ import { coordinates, ForecastData, GeoCodeingResponce, WeatherData } from "./ty
 
    }
     async reverseGeoCode({lat,lon} : coordinates) : Promise< GeoCodeingResponce []>{
-        const  url =  this.createUrl(`${API_CONFIG.BASE_URL}/rerverse` ,  {
+        const  url =  this.createUrl(`${API_CONFIG.GEO}/rerverse` ,  {
             lat:  lat.toString(),
             lon: lon.toString(),
-            limit: 5,
+            limit: 1,
         });
         return this.fetchData <GeoCodeingResponce []>(url)
 

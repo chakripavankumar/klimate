@@ -3,11 +3,23 @@ import { Button } from "../ui/button"
 import { useGeolocation } from "@/hooks/use-geoLocation"
 import WeatherSkelton from "../loading-skelton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { useForecastQuery, useReverseGeoLocation, useWeatherQuery } from "@/hooks/use-weather";
+
 
 
 const Dasboard = () => {
   
   const {coordinates, error : locationError, getLocation,isLoading  : locationLoading}= useGeolocation();
+
+   const locationQuery = useReverseGeoLocation(coordinates)
+   const forecastQuery = useForecastQuery(coordinates)
+   const weatherQuery = useWeatherQuery(coordinates)
+
+   console.log(locationQuery);
+   console.log(weatherQuery);
+   console.log(forecastQuery);
+  
+   
 
   function handleRefresh(){
     getLocation();
