@@ -17,7 +17,7 @@ const Dasboard = () => {
 
    console.log(locationQuery);
    console.log(weatherQuery);
-   console.log(forecastQuery);
+  console.log(forecastQuery);
   
    
 
@@ -55,7 +55,7 @@ const Dasboard = () => {
       <AlertTitle>Location Error</AlertTitle>
       <AlertDescription className="flex flex-col gap-4">
         <p>{locationError}</p>
-        <Button variant="outline" onClick={getLocation} className="w-fit">
+        <Button variant="outline" onClick={handleRefresh} className="w-fit">
           <MapPin className="mr-2 h-4 w-4" />
           Enable Location
         </Button>
@@ -63,6 +63,29 @@ const Dasboard = () => {
     </Alert>
   );
 };
+
+ const locationName = locationQuery.data ?.[0];
+ console.log(locationName);
+ 
+
+ if ( weatherQuery.error || forecastQuery.error) {
+      return (
+        <Alert variant="destructive">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertTitle> Error</AlertTitle>
+        <AlertDescription className="flex flex-col gap-4">
+          <p> Failed to fetch weather data</p>
+          <Button variant="outline" onClick={getLocation} className="w-fit">
+            <RefreshCcw className="mr-2 h-4 w-4" />
+           Retry
+          </Button>
+        </AlertDescription>
+      </Alert>
+      )
+ }
+  if ( !weatherQuery.data || !forecastQuery.data) {
+    <WeatherSkelton/>
+  }
   return (
     <div className=" space-y-4">
       {/* Favorite Cites */}
@@ -72,8 +95,8 @@ const Dasboard = () => {
              variant={"outline"}
              size={"icon"}
             onClick={handleRefresh}
-           // disabled={}
-        > <RefreshCcw className="h-4 w-4"/> 
+            disabled={weatherQuery.isFetching ||  forecastQuery.isFetching}
+        > <RefreshCcw className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" :""}`}/> 
         </Button>
       </div>
       {/* current and hour weather  */}
