@@ -9,7 +9,8 @@ import { CurrentWeather } from "../current-weather";
 
 
 
-const Dasboard = () => {
+
+export function WeatherDasboard () {
 
   const { coordinates, error: locationError, getLocation, isLoading: locationLoading } = useGeolocation();
 
@@ -17,11 +18,13 @@ const Dasboard = () => {
   const forecastQuery = useForecastQuery(coordinates)
   const weatherQuery = useWeatherQuery(coordinates)
 
-
+   // Function to refresh all data
   function handleRefresh() {
     getLocation();
     if (coordinates) {
-      //reload weather data
+      weatherQuery.refetch();
+      forecastQuery.refetch();
+      locationQuery.refetch();
     }
   }
   if (locationLoading) {
@@ -44,7 +47,6 @@ const Dasboard = () => {
       </Alert>
     );
   }
-
   if (!coordinates) {
     return (
       <Alert variant="destructive">
@@ -87,8 +89,8 @@ const Dasboard = () => {
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold tracking-tighter"> My location</h1>
         <Button
-          variant={"outline"}
-          size={"icon"}
+         variant="outline"
+          size="icon"
           onClick={handleRefresh}
           disabled={weatherQuery.isFetching || forecastQuery.isFetching}
         > 
@@ -98,11 +100,12 @@ const Dasboard = () => {
         />
         </Button>
       </div>
-   <div className=" grid gap-6">
-    <div>
+   <div className="grid gap-6">
+    <div className="flex flex-col lg:flex-row gap-4">
       {/* CurrentWeather
       hourly temperature */}
-       <CurrentWeather data = {weatherQuery.data}
+       <CurrentWeather 
+       data = {weatherQuery.data}
        locationName={locationName}
        />
     </div>
@@ -113,4 +116,3 @@ const Dasboard = () => {
     </div>
   )
 }
-export default Dasboard

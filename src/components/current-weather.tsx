@@ -3,11 +3,14 @@ import { Card, CardContent } from "./ui/card";
 import { ArrowDown, ArrowUp, Droplets, Wind } from "lucide-react";
 
 interface CurrentWeatherProps {
-    data: WeatherData;
+    data: WeatherData | null | undefined;
     locationName?:GeoCodeingResponce;
 }
 
 export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
+    if (!data) {
+        return <p>No weather data available</p>; // Render a fallback UI if data is null or undefined
+    }
     const {
         weather:[currentWeather],
         main: {temp, feels_like , temp_min , temp_max, humidity},
