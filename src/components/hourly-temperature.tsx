@@ -69,7 +69,9 @@ const HourlyTemperature = ({data} : HourlyTempratureProps) => {
                     </div>
                 )
              }
-           }}/>
+             return null;
+           }}
+           />
              <Line
              type="monotone"
              dataKey="temp"

@@ -6,6 +6,7 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { useForecastQuery, useReverseGeoLocation, useWeatherQuery } from "@/hooks/use-weather";
 import { CurrentWeather } from "../current-weather";
 import HourlyTemperature from "../hourly-temperature";
+import WeatherDetails from "../weather-deatils";
 
 
 
@@ -113,7 +114,9 @@ export function WeatherDasboard () {
 )}
     </div>
     <div>
-
+         {weatherQuery.data &&(
+          <WeatherDetails data= {weatherQuery.data}/>
+         )}
     </div>
    </div>
     </div>

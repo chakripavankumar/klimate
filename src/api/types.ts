@@ -35,7 +35,7 @@ export interface WeatherData{
     };
     sys :{
         sunrise: number;
-        senset:number;
+        sunset:number;
         country :string;
     };
     name: string;
