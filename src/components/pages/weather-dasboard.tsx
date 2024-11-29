@@ -5,6 +5,7 @@ import WeatherSkelton from "../loading-skelton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { useForecastQuery, useReverseGeoLocation, useWeatherQuery } from "@/hooks/use-weather";
 import { CurrentWeather } from "../current-weather";
+import HourlyTemperature from "../hourly-temperature";
 
 
 
@@ -84,7 +85,7 @@ export function WeatherDasboard () {
     <WeatherSkelton />
   }
   return (
-    <div className=" space-y-4">
+    <div className="space-y-4">
       {/* Favorite Cites */}
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold tracking-tighter"> My location</h1>
@@ -102,12 +103,14 @@ export function WeatherDasboard () {
       </div>
    <div className="grid gap-6">
     <div className="flex flex-col lg:flex-row gap-4">
-      {/* CurrentWeather
-      hourly temperature */}
+     
        <CurrentWeather 
        data = {weatherQuery.data}
        locationName={locationName}
        />
+       {forecastQuery.data && (
+  <HourlyTemperature data={forecastQuery.data} />
+)}
     </div>
     <div>
 
@@ -116,3 +119,4 @@ export function WeatherDasboard () {
     </div>
   )
 }
+export default WeatherDasboard;

@@ -32,7 +32,7 @@ import { coordinates, ForecastData, GeoCodeingResponce, WeatherData } from "./ty
      const url = this.createUrl(`${API_CONFIG.BASE_URL}/forecast` , {
         lat : lat.toString(),
         lon:lon.toString(),
-        units: API_CONFIG.DEFAULT_PARAMS.units,
+        units: "metric",
      });
      return this.fetchData <ForecastData>(url)
 

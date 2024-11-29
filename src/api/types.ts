@@ -2,6 +2,14 @@ export interface coordinates{
      lat : number;
      lon :  number;
 }
+export interface GeoCodeingResponce{
+    name :string;
+    local_names?:Record<string,string>;
+    lat: number;
+    lon:number;
+    country:string;
+    state?:string;
+ }
 
 export interface WeatherCondition{
     id:number;
@@ -31,16 +39,16 @@ export interface WeatherData{
         country :string;
     };
     name: string;
-    date: number;
+    dt: number;
 
 }
  export interface ForecastData{
     list : Array<{
         dt:number;
         main:WeatherData["main"];
-        weather: WeatherData['weather'];
+        weather: WeatherData["weather"];
         wind:WeatherData["wind"];
-        dt_text:string;
+        dt_txt:string;
     }>;
     city:{
         name :string;
@@ -50,11 +58,3 @@ export interface WeatherData{
     }
  }
  
- export interface GeoCodeingResponce{
-    name :string;
-    local_names?:Record<string,string>;
-    lat: number;
-    lon:number;
-    country:string;
-    state?:string;
- }
