@@ -7,6 +7,7 @@ import { useForecastQuery, useReverseGeoLocation, useWeatherQuery } from "@/hook
 import { CurrentWeather } from "../current-weather";
 import HourlyTemperature from "../hourly-temperature";
 import WeatherDetails from "../weather-deatils";
+import WeatherForecast from "../WeatherForecast";
 
 
 
@@ -113,10 +114,17 @@ export function WeatherDasboard () {
   <HourlyTemperature data={forecastQuery.data} />
 )}
     </div>
-    <div>
+    <div className=" grid gap-6 md:grid-cols-2 items-start">
          {weatherQuery.data &&(
           <WeatherDetails data= {weatherQuery.data}/>
          )}
+        
+        {
+          forecastQuery.data && (
+            <WeatherForecast data= {forecastQuery.data}/>   
+          )
+        }
+      
     </div>
    </div>
     </div>

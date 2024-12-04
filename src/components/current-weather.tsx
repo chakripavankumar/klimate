@@ -42,7 +42,7 @@ export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
                     <p className="text-7xl font-bold tracking-tighter">
                         {formatTemp(temp)}
                     </p>
-                    <div className="space-y-1 ">
+                    <div className="space-y-1">
                 <p className="text-sm font-medium text-muted-foreground">
                   Feels like {formatTemp(feels_like)}
                 </p>
