@@ -46,6 +46,14 @@ import { coordinates, ForecastData, GeoCodeingResponce, WeatherData } from "./ty
         return this.fetchData <GeoCodeingResponce []>(url)
 
     }
+    async searchLocations(query :string) : Promise< GeoCodeingResponce []>{
+      const  url =  this.createUrl(`${API_CONFIG.GEO}/direct` ,  {
+          q:query,
+          limit: 1,
+      });
+      return this.fetchData <GeoCodeingResponce []>(url)
+
+  }
  }
  
  export const weatherApi = new WeatherAPI();

@@ -5,7 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 export const WEATHER_KEYS={
     weather :( coords : coordinates)=>["weather " , coords] as const,
     forecast : ( coords : coordinates) => ["forecast" , coords] as const,
-     location: (coords: coordinates) => ["location", coords] as const
+     location: (coords: coordinates) => ["location", coords] as const,
+     search: (query :string) => ["location-search" , query] as const,
 } as const
 
  export function useWeatherQuery (coordinates : coordinates | null) {
@@ -33,6 +34,14 @@ export const WEATHER_KEYS={
          enabled : !!coordinates,
     })
  }
+
+  export function useLocationSearch(query : string) {
+   return useQuery ({
+      queryKey: WEATHER_KEYS.search(query),
+      queryFn:  ()=> weatherApi.searchLocations(query),
+      enabled :query.length >=3,
+   })
+  }
     
 
 
