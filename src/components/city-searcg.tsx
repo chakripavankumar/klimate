@@ -13,7 +13,8 @@ const CitySearch = () => {
     const {data :locations , isLoading}=useLocationSearch(query);
     const handleSelect = ( cityDta :string)=>{
       const [lat, lon, name , country]= cityDta.split("|");
-      navigate(`/city/${name}??lat=${lat}&lon=${lon}`)
+      setOpen(false)
+      navigate(`/city/${name}?lat=${lat}&lon=${lon}`)
       
     }
   return (
