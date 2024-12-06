@@ -19,5 +19,5 @@ import { useEffect, useState } from "react";
             console.log(error)
         }
      },[key,storedvalue]);
-     return [storedvalue,setStoredValue]
+     return [storedvalue,setStoredValue] as const
  }
